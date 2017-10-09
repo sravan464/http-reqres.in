@@ -25,10 +25,21 @@ class HomePage extends Component {
         dispatch(userActions.loadUsers());
     }
     handleInputChange(e) {
+        // var formData ={}
+        // const target = event.target;
+        // const value = target.type === 'checkbox' ? target.checked : target.value;
+        // const name = target.name;
+        // formData[name] = value
+        // this.setState({
+        //     formData
+        // });
         var oldState = this.state.formData;
         var newState = { [e.target.name]: e.target.value };
+
         // I have to assign/join because you've put the text state in a parent object.
         this.setState({ formData: Object.assign(oldState, newState) });
+        console.log(this.state.formData.first_name)
+        console.log(this.state.formData.last_name)
     }
     handleSubmit(){
           this.props.actions.createUser(this.state.formData)
