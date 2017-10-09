@@ -12,6 +12,14 @@ export function loadCoursesSuccess(users){
    }
 }
 
+export function createUser(user){
+    debugger
+    return {
+        type : actions.CREATE_USER,
+        payload : user
+    }
+}
+
 export function loadUsers() {
     return function (dispatch) {
         // const URL = `${api.BASE_URL}${api.GET_USERS}`
@@ -26,3 +34,4 @@ export function loadUsers() {
         })
     }
 }
+

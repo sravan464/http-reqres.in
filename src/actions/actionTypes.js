@@ -10,3 +10,7 @@ export const ADD_COUNTER = 'ADD_COUNTER'
 export const LOAD_USERS_SUCCESS = 'LOAD_SUCCESS'
 export const LOAD_ERROR = 'LOAD_ERROR'
 
+export const CREATE_USER = 'CREATE_USER'
+
+
+

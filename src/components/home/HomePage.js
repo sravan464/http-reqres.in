@@ -5,32 +5,48 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import * as userActions from '../../actions/userActions'
+import {bindActionCreators} from 'redux'
 
 class HomePage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isLoading :true
+            isLoading :true,
+            formData: {
+                first_name: '',
+                last_name: ''
+            }
         }
+        this.handleInputChange=this.handleInputChange.bind(this)
+        this.handleSubmit= this.handleSubmit.bind(this)
     }
     componentDidMount(){
         const {dispatch} = this.props
         dispatch(userActions.loadUsers());
     }
-    renderData(data){
-        data.map(item=>{
-            return (<div>
-              <h1>{item.id}</h1>
-            </div>)
-        })
+    handleInputChange(e) {
+        var oldState = this.state.formData;
+        var newState = { [e.target.name]: e.target.value };
+        // I have to assign/join because you've put the text state in a parent object.
+        this.setState({ formData: Object.assign(oldState, newState) });
+    }
+    handleSubmit(){
+          this.props.actions.createUser(this.state.formData)
     }
     render() {
-        // if(!this.props.usersReducer) return <p>Loading ....</p>
         const { userReducer: { data } } = this.props;
+        const listItems = data && data.map((item) =>
+            <li key={item.id}>{item.first_name}</li>
+        );
+        // if(!this.props.usersReducer) return <p>Loading ....</p>
+
         return (
             <div>
                 {console.log("data ===== > ", data && data)}
-                {data && this.renderData(data)}
+                {listItems}
+                firstName :<input type="text" name="first_name" onChange={this.handleInputChange}/>
+                lastName : <input type="text" name="last_name" onChange={this.handleInputChange}/>
+                <button onClick={this.handleSubmit}>create a new user</button>
             </div>
         );
     }
@@ -43,7 +59,12 @@ const mapStateToProps = (state, props) =>
     ({
         userReducer : state.userReducer
     })
-export default connect(mapStateToProps)(HomePage);
+function mapDispatchToProps(dispatch) {
+    return {
+      actions : bindActionCreators(userActions,dispatch)
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(HomePage);
 
 
 
