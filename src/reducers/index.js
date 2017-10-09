@@ -2,11 +2,12 @@
  * Created by sravankumarganji on 9/28/17.
  */
 import {combineReducers} from 'redux';
-import courses from './courseReducer'
+import modal from './modalReducer';
+import counter from './counterReducer'
 
 const rootReducer = combineReducers({
-  courses
-
+  modal,
+  counter
 });
 
 export default rootReducer;

@@ -1,7 +1,7 @@
 {
   "name": "http-reqres.in",
   "version": "1.0.0",
-  "description": "testing http-reqres.in",
+  "description": "http-reqres.in test",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",

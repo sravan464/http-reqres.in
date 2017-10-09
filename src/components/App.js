@@ -3,18 +3,14 @@
  */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Routing from '../routes';
-import Header from '../components/ui/Header';
+import HomePage from "./home/HomePage";
 
 class App extends Component {
   render() {
     return (
       <div className="container">
         <div className="row">
-          <Header/>
-        </div>
-        <div className="row">
-          <Routing/>
+          <HomePage/>
         </div>
       </div>
     );
