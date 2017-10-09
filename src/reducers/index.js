@@ -4,10 +4,12 @@
 import {combineReducers} from 'redux';
 import modal from './modalReducer';
 import counter from './counterReducer'
+import userReducer from './userReducer'
 
 const rootReducer = combineReducers({
   modal,
-  counter
+  counter,
+    userReducer
 });
 
 export default rootReducer;
