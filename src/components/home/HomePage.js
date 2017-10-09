@@ -10,15 +10,20 @@ class HomePage extends Component {
   constructor(props){
     super(props);
     this.state = {
+      isLoading :true
     }
   }
   componentDidMount(){
-    userActions.loadUsers();
+      // const {dispatch} = this.props
+      // dispatch(userActions.loadUsers());
+      userActions.loadUsers()
   }
+
   render() {
+    // if(!this.props.usersReducer) return <p>Loading ....</p>
     return (
       <div>
-          <h1>{console.log(this.props.usersReducer)}</h1>
+          {console.log(this.props.userReducer)}
       </div>
     );
   }
@@ -27,9 +32,8 @@ class HomePage extends Component {
 HomePage.propTypes = {};
 HomePage.defaultProps = {};
 
-function mapStateToProps(state){
-  return{
-  usersReducer : state.userReducer
-  }
-}
+const mapStateToProps = (state, props) =>
+    ({
+        userReducer : state.userReducer
+    })
 export default connect(mapStateToProps)(HomePage);
