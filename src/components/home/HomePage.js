@@ -21,8 +21,9 @@ class HomePage extends Component {
         this.handleSubmit= this.handleSubmit.bind(this)
     }
     componentDidMount(){
-        const {dispatch} = this.props
-        dispatch(userActions.loadUsers());
+        // const {dispatch} = this.props
+        this.props.actions.loadUsers();
+        //since we are using bindactionncreators , we need not to use this.props.dispatch externally
     }
     handleInputChange(e) {
         // var formData ={}
